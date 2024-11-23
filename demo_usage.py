@@ -19,7 +19,7 @@ def visual_delimiter(title=None):
         print('-'*80)
         
     
-@guarantee({'n':'.*'})
+@guarantee({'n': '.*'})
 def fibonacci_keywordarg_guarantee(**kwargs):
     """uses guarantee decorator to guarantee a particular
     variable name is used with keyword
@@ -46,7 +46,8 @@ def fibonacci_keywordarg_standard_mandatory(*, n):
             fibonacci_keywordarg_standard_mandatory(n=n-1)
     )
 
-@guarantee({'n':'.*'},{'x':'.*'})
+
+@guarantee({'n': '.*'}, {'x': '.*'})
 def printout_guarantee(**kwargs):
     """uses guarantee decorator to guarantee a particular
     variable name is used with keyword
@@ -54,12 +55,13 @@ def printout_guarantee(**kwargs):
     print(kwargs['n'], kwargs['x'])
 
 
-@guarantee({'n':'5'},{'x':'hello'})
+@guarantee({'n': '5'}, {'x': 'hello'})
 def printout_specific_guarantee(**kwargs):
     """uses guarantee decorator to guarantee a particular
     variable name is used with keyword
     arguments passed into an open-ended keyword argument"""
     print(kwargs['n'], kwargs['x'])
+
 
 if __name__ == '__main__':
     visual_delimiter('Basic arg check for N using guarantee')
@@ -69,7 +71,7 @@ if __name__ == '__main__':
     print(fibonacci_keywordarg_standard_mandatory(n=9))
     print("this worked. n was expected and n was used")
     visual_delimiter('Gurantee two arguments with their values [both wildcards]')
-    printout_guarantee(n = 1, x= 2)
+    printout_guarantee(n=1, x=2)
     print("this worked. n and x were expected and n and x were used")
     visual_delimiter('Fail because I am only supplying one argument using guarantee for two arguments and values')
     try:
@@ -78,22 +80,22 @@ if __name__ == '__main__':
         print("it worked! an exception was generated")
     visual_delimiter('now try with a argument value problem for x')
     try:
-        printout_specific_guarantee(n=5, x = 'goodbye')
+        printout_specific_guarantee(n=5, x='goodbye')
     except:
         print('guarantee regex worked! an exception was generated')
     visual_delimiter('now try with a argument value problem for n')
     try:
-        printout_specific_guarantee(n=2, x = 'hello')
+        printout_specific_guarantee(n=2, x='hello')
     except:
         print('guarantee regex worked! an exception was generated')
     visual_delimiter('now try with no argument value problems')
     try:
-        printout_specific_guarantee(n=5, x = 'hello')
+        printout_specific_guarantee(n=5, x='hello')
         print('guarantee regex worked! no exception was generated')
     except:
         print('guarantee regex failed! an exception was generated')
     try:
-        printout_specific_guarantee(z=5, x = 'hello')
+        printout_specific_guarantee(z=5, x='hello')
         print('guarantee regex failed! no exception was generated')
     except:
         print('guarantee regex worked! an exception was generated')
